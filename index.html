@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANCOMEDO | Premium Paper Products & Stationery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* CSS Reset and Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-blue: #1a365d;
+            --secondary-blue: #2d4a8a;
+            --accent-orange: #f97316;
+            --light-gray: #f8fafc;
+            --medium-gray: #e2e8f0;
+            --dark-gray: #4a5568;
+            --text-dark: #1a202c;
+            --white: #ffffff;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            color: var(--accent-orange);
+            margin-right: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--accent-orange);
+        }
+
+        nav a.active {
+            color: var(--accent-orange);
+        }
+
+        nav a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-orange);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(26, 54, 93, 0.9), rgba(26, 54, 93, 0.8)), url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+            padding: 180px 0 100px;
+            margin-top: 70px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-orange);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-orange);
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--accent-orange);
+        }
+
+        /* Categories Section */
+        .section-title {
+            text-align: center;
+            margin: 80px 0 50px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-orange);
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .category-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .category-icon {
+            font-size: 48px;
+            color: var(--secondary-blue);
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .category-card p {
+            color: var(--dark-gray);
+            font-size: 15px;
+        }
+
+        /* Featured Products */
+        .products {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .product-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background-color: var(--white);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: var(--medium-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--secondary-blue);
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-blue);
+        }
+
+        .product-info p {
+            color: var(--dark-gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .product-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .product-tag {
+            background-color: var(--light-gray);
+            color: var(--secondary-blue);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: var(--light-gray);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 36px;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: var(--medium-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            color: var(--secondary-blue);
+        }
+
+        /* Values Section */
+        .values {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+
+        .value-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .value-icon {
+            font-size: 40px;
+            color: var(--accent-orange);
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-orange);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: #cbd5e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--accent-orange);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-orange);
+        }
+
+        .newsletter input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 15px;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .newsletter input::placeholder {
+            color: #cbd5e0;
+        }
+
+        .newsletter button {
+            background-color: var(--accent-orange);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter button:hover {
+            background-color: #ea580c;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #cbd5e0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .about-image {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                padding-top: 50px;
+                transition: left 0.3s;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav li {
+                margin: 0 0 30px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+                padding: 0 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 16px;
+            }
+            
+            .categories, .product-grid, .value-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-pen-fancy"></i>
+                ANCOMEDO
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Inspiring Creativity, Organizing Ideas</h1>
+            <p>ANCOMEDO provides premium paper products, stationery, and educational materials designed to enhance productivity, creativity, and learning experiences.</p>
+            <a href="#products" class="cta-button">Explore Our Products</a>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="container" id="categories">
+        <div class="section-title">
+            <h2>Our Product Categories</h2>
+            <p>Explore our wide range of premium products designed for education, office, and creative use.</p>
+        </div>
+        
+        <div class="categories">
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-scroll"></i>
+                </div>
+                <h3>Paper & Posters</h3>
+                <p>High-quality paper products, decorative posters, and placards for various applications.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <h3>Teaching Materials</h3>
+                <p>Educational resources including albums, arithmetical tables, cards, and teaching aids.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3>Office Supplies</h3>
+                <p>Pens, document holders, magnetic boards, flip charts, and all essential office requisites.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-pencil-alt"></i>
+                </div>
+                <h3>Stationery & School</h3>
+                <p>Comprehensive range of writing materials, school supplies, stickers, and calendars.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Books & Printed Matter</h3>
+                <p>Educational books, printed materials, and specialized publications for various needs.</p>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-icon">
+                    <i class="fas fa-palette"></i>
+                </div>
+                <h3>Creative Materials</h3>
+                <p>Cardboard, art supplies, and creative tools to inspire imagination and innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+                <p>Discover our most popular and innovative products loved by educators, professionals, and creatives.</p>
+            </div>
+            
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Premium 2024 Calendars</h3>
+                        <p>Elegant desk and wall calendars with customizable designs for corporate or personal use.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">Calendar</span>
+                            <span class="product-tag">Printed Matter</span>
+                            <span class="product-tag">Office</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Magnetic Whiteboards</h3>
+                        <p>High-quality magnetic boards for offices and classrooms, available in various sizes.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">Office Requisites</span>
+                            <span class="product-tag">Teaching Materials</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Educational Flip Charts</h3>
+                        <p>Durable flip charts with premium paper for effective presentations and teaching.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">Teaching Materials</span>
+                            <span class="product-tag">Office</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-sticky-note"></i>
+                    </div>
+                    <div class="product-info">
+                        <h3>Designer Stickers & Labels</h3>
+                        <p>Creative sticker collections for organization, decoration, and custom labeling.</p>
+                        <div class="product-tags">
+                            <span class="product-tag">Stationery</span>
+                            <span class="product-tag">Stickers</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About ANCOMEDO</h2>
+                <p>Our commitment to quality, innovation, and customer satisfaction.</p>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>We Provide Tools That Inspire and Organize</h2>
+                    <p>Since our founding, ANCOMEDO has been dedicated to creating premium paper products, educational materials, and office supplies that enhance productivity and spark creativity.</p>
+                    <p>Our products are designed with attention to detail, using sustainable materials whenever possible, to ensure they meet the needs of educators, professionals, and creatives alike.</p>
+                    <p>From classrooms to boardrooms, our products help organize ideas, facilitate learning, and inspire innovation.</p>
+                    <a href="#contact" class="cta-button" style="margin-top: 20px;">Contact Us</a>
+                </div>
+                
+                <div class="about-image">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Values</h2>
+                <p>The principles that guide everything we do at ANCOMEDO.</p>
+            </div>
+            
+            <div class="value-cards">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Quality First</h3>
+                    <p>We use premium materials and rigorous quality control to ensure our products exceed expectations.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to eco-friendly practices and materials, minimizing our environmental impact.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>We continuously develop new products and solutions to meet evolving customer needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>ANCOMEDO</h3>
+                    <p>Premium paper products, stationery, and educational materials designed to enhance productivity, creativity, and learning experiences.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Product Categories</h3>
+                    <ul>
+                        <li><a href="#">Paper & Posters</a></li>
+                        <li><a href="#">Teaching Materials</a></li>
+                        <li><a href="#">Office Supplies</a></li>
+                        <li><a href="#">Stationery & School</a></li>
+                        <li><a href="#">Books & Printed Matter</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Business Ave, Suite 100</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-envelope"></i> info@ancomedo.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9am-6pm</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get updates on new products and special offers.</p>
+                    <div class="newsletter">
+                        <input type="email" placeholder="Your email address">
+                        <button>Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 ANCOMEDO. All rights reserved. | Designed for premium paper products & stationery</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Newsletter form submission
+        document.querySelector('.newsletter button').addEventListener('click', function() {
+            const emailInput = document.querySelector('.newsletter input');
+            if(emailInput.value) {
+                alert('Thank you for subscribing to ANCOMEDO newsletter!');
+                emailInput.value = '';
+            } else {
+                alert('Please enter your email address.');
+            }
+        });
+        
+        // Active navigation highlighting on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                if(scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('href') === `#${currentSection}` || 
+                   (currentSection === '' && link.getAttribute('href') === '#')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
